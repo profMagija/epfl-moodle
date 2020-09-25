@@ -91,7 +91,8 @@ class Moodle(object):
             raise ConnexionIssue()
         soup = BeautifulSoup(main_page.text, 'html.parser')
         logging.info("Soup created")
-        for course_head in soup.find_all(class_='course_title'):
+        for course_box in soup.find_all(class_='coc-course'):
+            course_head = course_box.find('h3')
             logging.info("course found")
             logging.debug(course_head)
             course_link = course_head.find('a')
